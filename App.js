@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { Text, View } from "react-native";
+import AppLoading from "expo-app-loading";
+import * as Font from "expo-font";
+
+import MainStack from "./Navigate";
+
+const fonts = () =>
+  Font.loadAsync({
+    "nunito-regular": require("./assets/fonts/Lato-LightItalic.ttf"),
+  });
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [font, setFont] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (font) {
+    return <MainStack />;
+  } else {
+    return (
+      <AppLoading
+        startAsync={fonts}
+        onFinish={() => setFont(true)}
+        autoHideSplash={true}
+        onError={(err) => console.log(err)}
+      />
+    );
+  }
+}

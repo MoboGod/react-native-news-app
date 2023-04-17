@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7293f860-1a51-4fad-bc0d-b24106e4b841"
+      }
+    },
+    "owner": "mobogod"
   }
 }
